@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Admin</title>
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">Admin Panel</div>
+                    <div class="card-body">
+                        <button id="updateTable" class="btn btn-primary mb-3">Update Table</button>
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <!-- Assuming CSV columns here. You might need to adjust based on actual CSV content -->
+                                    <th>Amount</th>
+                                    <th>oldbalanceOrg</th>
+                                    <th>newbalanceOrig</th>
+                                    <th>Result</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Rows will be populated here from the CSV file -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Script to handle the "Update Table" button click and populate the table
+        $('#updateTable').click(function () {
+            // Fetch the data from the backend (Flask route) and append to the table
+            $.get('/get_data', function (data) {
+                $('#tableBody').append(data);
+            });
+        });
+    </script>
+</body>
+
+</html>
